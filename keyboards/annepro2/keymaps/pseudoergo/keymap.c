@@ -106,18 +106,19 @@ void keyboard_post_init_user(void) {
 }
 
 layer_state_t layer_state_set_user(layer_state_t state) {
-    const ap2_led_t ice = {.p.red = 0x20, .p.green = 0xff, .p.blue = 0x4c, .p.alpha = 0xff};
+    const ap2_led_t cyan = {.p.red = 0x20, .p.green = 0xff, .p.blue = 0x4c, .p.alpha = 0xff};
     // alt: (0x60, 0xff, 0x60); (0x00, 0xff, 0x66); (0x20, 0xff, 0x79);
     const ap2_led_t purple = {.p.red = 0x30, .p.green = 0x21, .p.blue = 0xff, .p.alpha = 0xff};
     const ap2_led_t orange = {.p.red = 0xff, .p.green = 0xb6, .p.blue = 0x21, .p.alpha = 0xff};
+    const ap2_led_t green = {.p.red = 0x00, .p.green = 0xff, .p.blue = 0x00, .p.alpha = 0xff};
     const ap2_led_t red = {.p.red = 0xff, .p.green = 0x00, .p.blue = 0x00, .p.alpha = 0xff};
     const ap2_led_t white = {.p.red = 0xff, .p.green = 0xff, .p.blue = 0xff, .p.alpha = 0xff};
     const ap2_led_t color_reset = {.p.red = 0x00, .p.green = 0x00, .p.blue = 0x00, .p.alpha = 0x00};
     switch (get_highest_layer(state)) {
         case EXTRA_LAYER: // TODO FIXME keep color on lock
-            ap2_led_mask_set_mono(orange);
-            ap2_led_mask_set_key(1, 13, ice); // Backslash
-            ap2_led_mask_set_key(2, 12, white); // Enter
+            ap2_led_mask_set_mono(cyan);
+            ap2_led_mask_set_key(1, 13, orange); // Backslash
+            ap2_led_mask_set_key(2, 12, green); // Enter
             ap2_led_mask_set_key(3, 12, red); // RShift
             ap2_led_mask_set_key(2, 0, white); // CapsLock(Esc)
             break;
@@ -135,7 +136,8 @@ layer_state_t layer_state_set_user(layer_state_t state) {
             ap2_led_mask_set_key(2, 0, white); // CapsLock(Esc)
             break;
         case KEYPAD_LAYER: // TODO FIXME
-            ap2_led_mask_set_mono(ice);
+            ap2_led_mask_set_mono(orange);
+            ap2_led_mask_set_key(1, 13, red); // Backslash
             ap2_led_mask_set_key(2, 0, white); // CapsLock(Esc)
             break;
         default:
