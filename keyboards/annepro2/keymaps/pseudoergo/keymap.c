@@ -56,7 +56,7 @@ const uint16_t keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   /* 
   * Layer MEDIA_LAYER
   * ,-----------------------------------------------------------------------------------------.
-  * |     | BT1 | BT2 | BT3 | BT4 |     |     |     |     |LEDTG|LEDI+|LEDPV|LEDNX|           |
+  * |     | BT1 | BT2 | BT3 | BT4 |     |     |     |     |RGBTg|     |     |     |           |
   * |-----------------------------------------------------------------------------------------+
   * |        |     |VolUp|     |     |     |     |     |     |     |     |     |     |        |
   * |-----------------------------------------------------------------------------------------+
@@ -68,7 +68,7 @@ const uint16_t keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   * \-----------------------------------------------------------------------------------------/
   */
   [MEDIA_LAYER] = LAYOUT_60_ansi(
-    XXXXXXX, KC_AP2_BT1, KC_AP2_BT2, KC_AP2_BT3, KC_AP2_BT4, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_AP_RGB_MOD, KC_AP_RGB_TOG, KC_AP_RGB_VAD, KC_AP_RGB_VAI, XXXXXXX,
+    XXXXXXX, KC_AP2_BT1, KC_AP2_BT2, KC_AP2_BT3, KC_AP2_BT4, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_AP_LED_TOG, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
     XXXXXXX, XXXXXXX, KC_VOLU, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
     XXXXXXX, KC_MEDIA_PLAY_PAUSE, KC_VOLD, KC_MEDIA_NEXT_TRACK, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
     XXXXXXX, XXXXXXX, KC_MUTE, XXXXXXX, XXXXXXX, KC_AP2_BT1, KC_AP2_BT2, KC_AP2_BT_UNPAIR, KC_AP2_USB, XXXXXXX, XXXXXXX, XXXXXXX,
@@ -100,25 +100,46 @@ const uint16_t keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 void keyboard_post_init_user(void) {
     ap2_led_enable();
-    ap2_led_set_profile(7); // TODO 14
-    /*annepro2LedNextAnimationSpeed(); // Slower animation speed, call it up to 3 times for even slower speed*/
+    ap2_led_set_profile(14);
+    // Slower animation speed, call it up to 3 times for even slower speed:
+    ap2_led_next_animation_speed();
 }
 
 layer_state_t layer_state_set_user(layer_state_t state) {
+    const ap2_led_t ice = {.p.red = 0x20, .p.green = 0xff, .p.blue = 0x4c, .p.alpha = 0xff};
+    // alt: (0x60, 0xff, 0x60); (0x00, 0xff, 0x66); (0x20, 0xff, 0x79);
+    const ap2_led_t purple = {.p.red = 0x30, .p.green = 0x21, .p.blue = 0xff, .p.alpha = 0xff};
+    const ap2_led_t orange = {.p.red = 0xff, .p.green = 0xb6, .p.blue = 0x21, .p.alpha = 0xff};
+    const ap2_led_t red = {.p.red = 0xff, .p.green = 0x00, .p.blue = 0x00, .p.alpha = 0xff};
+    const ap2_led_t white = {.p.red = 0xff, .p.green = 0xff, .p.blue = 0xff, .p.alpha = 0xff};
+    const ap2_led_t color_reset = {.p.red = 0x00, .p.green = 0x00, .p.blue = 0x00, .p.alpha = 0x00};
     switch (get_highest_layer(state)) {
-        case EXTRA_LAYER:
-            ap2_led_set_foreground_color(0x20, 0xff, 0x4c);
-            // (0x60, 0xff, 0x60); (0x00, 0xff, 0x66); (0x20, 0xff, 0x79);
+        case EXTRA_LAYER: // TODO FIXME keep color on lock
+            ap2_led_mask_set_mono(orange);
+            ap2_led_mask_set_key(1, 13, ice); // Backslash
+            ap2_led_mask_set_key(2, 12, white); // Enter
+            ap2_led_mask_set_key(3, 12, red); // RShift
+            ap2_led_mask_set_key(2, 0, white); // CapsLock(Esc)
             break;
         case MEDIA_LAYER:
-            ap2_led_set_foreground_color(0xf0, 0x00, 0x00); // TODO: only interested keys
+            ap2_led_mask_set_key(0, 1, purple); // 1
+            ap2_led_mask_set_key(0, 2, purple); // 2
+            ap2_led_mask_set_key(0, 3, purple); // 3
+            ap2_led_mask_set_key(0, 4, purple); // 4
+            ap2_led_mask_set_key(0, 9, purple); // 9
+            ap2_led_mask_set_key(1, 2, purple); // W
+            ap2_led_mask_set_key(2, 1, purple); // A
+            ap2_led_mask_set_key(2, 2, purple); // S
+            ap2_led_mask_set_key(2, 3, purple); // D
+            ap2_led_mask_set_key(3, 3, purple); // X
+            ap2_led_mask_set_key(2, 0, white); // CapsLock(Esc)
             break;
-        case KEYPAD_LAYER:
-            ap2_led_set_foreground_color(0x00, 0xf0, 0xf0); // TODO: only interested keys
+        case KEYPAD_LAYER: // TODO FIXME
+            ap2_led_mask_set_mono(ice);
+            ap2_led_mask_set_key(2, 0, white); // CapsLock(Esc)
             break;
         default:
-            // Reset back to the current profile
-            ap2_led_reset_foreground_color();
+            ap2_led_mask_set_mono(color_reset);
             break;
     }
     return state;
@@ -127,16 +148,16 @@ layer_state_t layer_state_set_user(layer_state_t state) {
 // The function to handle the caps lock logic
 // It's called after the capslock changes state or after entering layers 1 and 2.
 bool led_update_user(led_t leds) {
+    const ap2_led_t red = {.p.red = 0xff, .p.green = 0x00, .p.blue = 0x00, .p.alpha = 0xff};
+    const ap2_led_t color_reset = {.p.red = 0x00, .p.green = 0x00, .p.blue = 0x00, .p.alpha = 0x00};
     if (leds.caps_lock) {
-        // Set the caps-lock to red
-        const ap2_led_t color = {.p.red = 0xff, .p.green = 0x00, .p.blue = 0x00, .p.alpha = 0xff};
-        ap2_led_sticky_set_key(2, 0, color);
-        /* NOTE: Instead of colouring the capslock only, you can change the whole
-           keyboard with ap2_led_mask_set_mono */
-    } else {
-        // Reset the capslock if there is no layer active
-        ap2_led_unset_sticky_key(2, 0);
+        ap2_led_mask_set_key(3, 0, red); // L Shift
+        ap2_led_mask_set_key(3, 12, red); // R Shift
+        ap2_led_mask_set_key(4, 11, red); // EXTRA
+    } else if (layer_state_is(BASE_LAYER)) {
+        ap2_led_mask_set_key(3, 0, color_reset); // L Shift
+        ap2_led_mask_set_key(3, 12, color_reset); // R Shift
+        ap2_led_mask_set_key(4, 11, color_reset); // EXTRA
     }
-
     return true;
 }
