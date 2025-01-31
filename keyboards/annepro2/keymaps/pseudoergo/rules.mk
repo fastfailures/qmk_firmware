@@ -1,11 +1,7 @@
-MOUSEKEY_ENABLE = yes # https://github.com/qmk/qmk_firmware/blob/master/docs/feature_mouse_keys.md
+# Mouse Key
+# https://github.com/qmk/qmk_firmware/blob/master/docs/feature_mouse_keys.md
+MOUSEKEY_ENABLE = yes
 
-# DYNAMIC_MACRO_ENABLE = yes # https://github.com/qmk/qmk_firmware/blob/master/docs/feature_dynamic_macros.md
-
-# NKRO_ENABLE = no
-# TAP_DANCE_ENABLE = yes
-# LTO_ENABLE = yes
-#
-# UCIS_ENABLE = yes
-#
-# COMMAND_ENABLE = yes
+# Caps Word
+# https://github.com/qmk/qmk_firmware/blob/master/docs/features/caps_word.md
+CAPS_WORD_ENABLE = yes
