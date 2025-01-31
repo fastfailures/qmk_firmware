@@ -22,15 +22,16 @@ const uint16_t keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   * |-----------------------------------------------------------------------------------------+
   * | Shift      |  z  |  x  |  c  |  v  |  b  |  n  |  m  |  ,  |  .  |  /  |    Shift       |
   * |-----------------------------------------------------------------------------------------+
-  * | Ctrl  | L_GUI | Alt ( |               Space             | Alt ) | MEDIA | EXTRA |       |
+  * | Ctrl  | L_GUI |  Alt  |               Space             |  Alt  | MEDIA | EXTRA | MsWDw |
   * \-----------------------------------------------------------------------------------------/
+  * Both shifts => CAPS_WORD
   */
   [BASE_LAYER] = LAYOUT_60_ansi(
     KC_GRAVE, KC_1, KC_2, KC_3, KC_4, KC_5, KC_6, KC_7, KC_8, KC_9, KC_0, KC_MINS, KC_EQL, KC_BSPC,
     KC_TAB, KC_Q, KC_W, KC_E, KC_R, KC_T, KC_Y, KC_U, KC_I, KC_O, KC_P, KC_LBRC, KC_RBRC, KC_BSLS,
     KC_ESC, KC_A, KC_S, KC_D, KC_F, KC_G, KC_H, KC_J, KC_K, KC_L, KC_SCLN, KC_QUOT, KC_ENT,
     KC_LSFT, KC_Z, KC_X, KC_C, KC_V, KC_B, KC_N, KC_M, KC_COMM, KC_DOT, KC_SLSH, KC_RSFT,
-    KC_LCTL, KC_LGUI, SC_LAPO,      KC_SPC,       SC_RAPC, MO(MEDIA_LAYER), MO(EXTRA_LAYER), XXXXXXX
+    KC_LCTL, KC_LGUI, KC_LALT,      KC_SPC,       KC_RALT, MO(MEDIA_LAYER), MO(EXTRA_LAYER), KC_MS_WH_DOWN
   ),
   /*
   * Layer EXTRA_LAYER
@@ -43,7 +44,7 @@ const uint16_t keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   * |-----------------------------------------------------------------------------------------+
   * | MsButton1  |     |     |     |     |     |     |MsAcc|     |     |     |    CapsLock    |
   * |-----------------------------------------------------------------------------------------+
-  * | Ctrl  | L_GUI | Alt ( |           Enter                 | Alt ) |       |       |       |
+  * | Ctrl  | L_GUI |  Alt  |           Enter                 |  Alt  |       |       |       |
   * \-----------------------------------------------------------------------------------------/
   */
   [EXTRA_LAYER] = LAYOUT_60_ansi(
@@ -85,7 +86,7 @@ const uint16_t keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   * |-----------------------------------------------------------------------------------------+
   * |            |     |     |     |     |     |  1  |  2  |  3  |  .  |  /  |                |
   * |-----------------------------------------------------------------------------------------+
-  * | Ctrl  | L_GUI | Alt ( |                 0               | Alt ) | MEDIA | EXTRA |       |
+  * | Ctrl  | L_GUI |  Alt  |                 0               |  Alt  | MEDIA | EXTRA |       |
   * \-----------------------------------------------------------------------------------------/
   */
   [KEYPAD_LAYER] = LAYOUT_60_ansi(
@@ -147,8 +148,8 @@ layer_state_t layer_state_set_user(layer_state_t state) {
     return state;
 }
 
-// The function to handle the caps lock logic
-// It's called after the capslock changes state or after entering layers 1 and 2.
+// The function to handle the Caps Lock logic
+// It's called after the capslock changes state or after entering layers 1 and 2
 bool led_update_user(led_t leds) {
     const ap2_led_t red = {.p.red = 0xff, .p.green = 0x00, .p.blue = 0x00, .p.alpha = 0xff};
     const ap2_led_t color_reset = {.p.red = 0x00, .p.green = 0x00, .p.blue = 0x00, .p.alpha = 0x00};
@@ -162,4 +163,19 @@ bool led_update_user(led_t leds) {
         ap2_led_mask_set_key(4, 11, color_reset); // EXTRA
     }
     return true;
+}
+
+// Show Caps Word status
+void caps_word_set_user(bool active) {
+    const ap2_led_t red = {.p.red = 0xff, .p.green = 0x00, .p.blue = 0x00, .p.alpha = 0xff};
+    const ap2_led_t color_reset = {.p.red = 0x00, .p.green = 0x00, .p.blue = 0x00, .p.alpha = 0x00};
+    if (active) {
+        ap2_led_mask_set_key(3, 0, red); // L Shift
+        ap2_led_mask_set_key(3, 12, red); // R Shift
+        ap2_led_mask_set_key(4, 6, red); // Space
+    } else {
+        ap2_led_mask_set_key(3, 0, color_reset); // L Shift
+        ap2_led_mask_set_key(3, 12, color_reset); // R Shift
+        ap2_led_mask_set_key(4, 6, color_reset); // Space
+    }
 }
