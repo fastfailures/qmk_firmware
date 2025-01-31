@@ -44,7 +44,7 @@ const uint16_t keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   * |-----------------------------------------------------------------------------------------+
   * | MsButton1  |     |     |     |     |     |     |MsAcc|     |     |     |    CapsLock    |
   * |-----------------------------------------------------------------------------------------+
-  * | Ctrl  | L_GUI |  Alt  |           Enter                 |  Alt  |       |       |       |
+  * | Ctrl  | L_GUI |  Alt  |           Enter                 |  Alt  |       |       |  Down |
   * \-----------------------------------------------------------------------------------------/
   */
   [EXTRA_LAYER] = LAYOUT_60_ansi(
@@ -52,7 +52,7 @@ const uint16_t keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_MS_BTN3, XXXXXXX, KC_MS_UP, KC_MS_BTN2, KC_MS_WH_UP, XXXXXXX, KC_HOME, KC_PGUP, KC_PGDN, KC_END, KC_PSCR, XXXXXXX, XXXXXXX, DF(KEYPAD_LAYER),
     DF(BASE_LAYER), KC_MS_LEFT, KC_MS_DOWN, KC_MS_RIGHT, KC_MS_WH_DOWN, XXXXXXX, KC_LEFT, KC_DOWN, KC_UP, KC_RIGHT, KC_PGUP, KC_PGDN, DF(EXTRA_LAYER),
     KC_MS_BTN1, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_MS_ACCEL1, XXXXXXX, XXXXXXX, XXXXXXX, KC_CAPS_LOCK,
-    _______, _______, _______,      KC_ENT,             _______, XXXXXXX, _______, XXXXXXX
+    _______, _______, _______,      KC_ENT,             _______, XXXXXXX, _______, KC_DOWN
   ),
   /* 
   * Layer MEDIA_LAYER
