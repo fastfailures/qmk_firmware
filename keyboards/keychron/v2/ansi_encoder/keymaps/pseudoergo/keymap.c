@@ -51,10 +51,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         _______, _______,  _______,                             _______,                            _______,  XXXXXXX,  XXXXXXX,  _______, _______, _______),
 
     [LMEDIA] = LAYOUT_ansi_67(
-        NK_TOGG, XXXXXXX,  DM_PLY1,  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, RM_HUED, RM_HUEU, RM_ON,   RM_OFF,   XXXXXXX,  XXXXXXX,  KC_MPRV,          KC_MUTE,
-        XXXXXXX, DM_REC1,  XXXXXXX,  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,  XXXXXXX,  XXXXXXX,  KC_MSTP,          KC_MNXT,
-        XXXXXXX, XXXXXXX,  XXXXXXX,  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,  XXXXXXX,            KC_MNXT,          KC_MPLY,
-        XXXXXXX,           XXXXXXX,  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,  XXXXXXX,            KC_MPLY, _______,
+        NK_TOGG, XXXXXXX,  DM_PLY1,  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, RM_HUED, RM_HUEU, RM_ON,   RM_OFF,   XXXXXXX,  XXXXXXX,  XXXXXXX,          KC_MUTE,
+        XXXXXXX, DM_REC1,  XXXXXXX,  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,  XXXXXXX,  XXXXXXX,  KC_MPRV,          KC_MNXT,
+        XXXXXXX, XXXXXXX,  XXXXXXX,  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,  XXXXXXX,            KC_MSTP,          KC_MPLY,
+        XXXXXXX,           XXXXXXX,  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,  XXXXXXX,            _______, _______,
         XXXXXXX, XXXXXXX,  XXXXXXX,                             XXXXXXX,                            XXXXXXX,  _______,  _______,  _______, _______, _______),
 
     [LKPAD] = LAYOUT_ansi_67(
@@ -175,12 +175,10 @@ bool rgb_matrix_indicators_kb(void) {
             rgb_matrix_set_color(8, RGB_CORAL);    // 8
             rgb_matrix_set_color(9, RGB_CORAL);    // 9
             rgb_matrix_set_color(10, RGB_CORAL);   // 0
-            rgb_matrix_set_color(2, RGB_PURPLE);   // 2
-            rgb_matrix_set_color(16, RGB_PURPLE);   // q
-            rgb_matrix_set_color(13, RGB_PURPLE);  // Backspace
+            rgb_matrix_set_color(2, RGB_MAGENTA);  // 2
+            rgb_matrix_set_color(16, RGB_MAGENTA); // q
             rgb_matrix_set_color(28, RGB_PURPLE);  // Backslash
             rgb_matrix_set_color(42, RGB_PURPLE);  // Enter
-            rgb_matrix_set_color(55, RGB_PURPLE);  // ShiftDx
             rgb_matrix_set_color(29, RGB_PURPLE);  // PgUp
             rgb_matrix_set_color(43, RGB_PURPLE);  // PgDn
             break;
