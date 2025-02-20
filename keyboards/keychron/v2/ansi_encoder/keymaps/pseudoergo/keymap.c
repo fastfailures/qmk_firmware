@@ -66,11 +66,6 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 };
 
-// TODO
-// Shortcut in MOV layer per ctrl alt f1 f2 f7
-// tasto media tap dance: tap = media per il prossimo keypress, doppio tap = del, hold = media
-// shift tap dance: frecce (single: right, double, down) ...sarebbe fico: tap+hold = mov
-
 // Encoder
 #if defined(ENCODER_MAP_ENABLE)
 const uint16_t PROGMEM encoder_map[][NUM_ENCODERS][NUM_DIRECTIONS] = {
