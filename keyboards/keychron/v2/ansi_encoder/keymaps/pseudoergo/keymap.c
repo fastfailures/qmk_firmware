@@ -11,6 +11,7 @@ enum layers {
   LWBASE,   // Base layer (Win) - arrows on arrows
   //
   LMOV,    // Movements layer
+  LNUM,    // Home-numbers layer
   LMEDIA,  // Media layer
   LKPAD,   // Keypad layer
 };
@@ -22,28 +23,36 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_TAB,  KC_Q,     KC_W,     KC_E,    KC_R,    KC_T,    KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,     KC_LBRC,  KC_RBRC,  KC_BSLS,          MS_BTN2,
         KC_ESC,  KC_A,     KC_S,     KC_D,    KC_F,    KC_G,    KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN,  KC_QUOT,            KC_ENT,           MS_BTN1,
         KC_LSFT,           KC_Z,     KC_X,    KC_C,    KC_V,    KC_B,    KC_N,    KC_M,    KC_COMM, KC_DOT,   KC_SLSH,            KC_RSFT, MS_UP,
-        KC_LCTL, KC_LGUI,  KC_LALT,                             KC_SPC,                             KC_RALT, MO(LMEDIA),TT(LMOV), MS_LEFT, MS_DOWN, MS_RGHT),
+        KC_LCTL, KC_LGUI,  KC_LALT,                             LT(LNUM,KC_SPC),                    KC_RALT, MO(LMEDIA),TT(LMOV), MS_LEFT, MS_DOWN, MS_RGHT),
     // NOTE:
     // both Shifts: Caps Word
-    // MOV multiple times: lock it
+    // MOV 5 times: lock it
+    // CapsLock and RGUI rationale: it could be Canc, but it's too dangerous
 
     [LWBASE] = LAYOUT_ansi_67(
  LT(LMOV,KC_GRV),KC_1,     KC_2,     KC_3,    KC_4,    KC_5,    KC_6,    KC_7,    KC_8,    KC_9,    KC_0,     KC_MINS,  KC_EQL,   KC_BSPC,          KC_MUTE,
         KC_TAB,  KC_Q,     KC_W,     KC_E,    KC_R,    KC_T,    KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,     KC_LBRC,  KC_RBRC,  KC_BSLS,          KC_MNXT,
         KC_ESC,  KC_A,     KC_S,     KC_D,    KC_F,    KC_G,    KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN,  KC_QUOT,            KC_ENT,           KC_MPLY,
         KC_LSFT,           KC_Z,     KC_X,    KC_C,    KC_V,    KC_B,    KC_N,    KC_M,    KC_COMM, KC_DOT,   KC_SLSH,            KC_RSFT, KC_UP,
-        KC_LCTL, KC_LGUI,  KC_LALT,                             KC_SPC,                             KC_RALT, MO(LMEDIA),TT(LMOV), KC_LEFT, KC_DOWN, KC_RGHT),
+        KC_LCTL, KC_LGUI,  KC_LALT,                             LT(LNUM,KC_SPC),                    KC_RALT, MO(LMEDIA),TT(LMOV), KC_LEFT, KC_DOWN, KC_RGHT),
 
     [LMOV] = LAYOUT_ansi_67(
        TO(LBASE),KC_F1,    KC_F2,    KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,   KC_F11,   KC_F12,   KC_DEL,           _______,
-        MS_BTN3, XXXXXXX,  MS_UP,    MS_BTN2, MS_WHLU, XXXXXXX, KC_HOME, KC_PGDN, KC_PGUP, KC_END,  KC_PSCR,  XXXXXXX,  KC_INS,   TO(LKPAD),        _______,
+        MS_BTN3, MS_BTN2,  MS_UP,    MS_BTN1, MS_WHLU, XXXXXXX, KC_HOME, KC_PGDN, KC_PGUP, KC_END,  KC_PSCR,  XXXXXXX,  KC_INS,   TO(LKPAD),        _______,
         _______, MS_LEFT,  MS_DOWN,  MS_RGHT, MS_WHLD, XXXXXXX, KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, XXXXXXX,  XXXXXXX,            TO(LBASE),        _______,
-        MS_BTN1,           XXXXXXX,  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,  XXXXXXX,            KC_DOWN, _______,
+        _______,           XXXXXXX,  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,  XXXXXXX,            _______, _______,
         _______, _______,  _______,                             KC_ENT,                             _______,  XXXXXXX,  _______,  _______, _______, _______),
 
+    [LNUM] = LAYOUT_ansi_67(
+        XXXXXXX, XXXXXXX,  XXXXXXX,  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,  XXXXXXX,  XXXXXXX,  _______,          _______,
+        _______, XXXXXXX,  XXXXXXX,  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,          _______,
+        _______, KC_1,     KC_2,     KC_3,    KC_4,    KC_5,    KC_6,    KC_7,    KC_8,    KC_9,    KC_0,     KC_MINS,            _______,          _______,
+        _______,           XXXXXXX,  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,  XXXXXXX,            _______, _______,
+        _______, _______,  _______,                             _______,                            _______,  XXXXXXX,  XXXXXXX,  _______, _______, _______),
+
     [LMEDIA] = LAYOUT_ansi_67(
-        NK_TOGG, XXXXXXX,  XXXXXXX,  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, RM_HUED, RM_HUEU, RM_ON,   RM_OFF,   XXXXXXX,  XXXXXXX,  KC_MPRV,          KC_MUTE,
-        XXXXXXX, XXXXXXX,  XXXXXXX,  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,  XXXXXXX,  XXXXXXX,  KC_MSTP,          KC_MNXT,
+        NK_TOGG, XXXXXXX,  DM_PLY1,  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, RM_HUED, RM_HUEU, RM_ON,   RM_OFF,   XXXXXXX,  XXXXXXX,  KC_MPRV,          KC_MUTE,
+        XXXXXXX, DM_REC1,  XXXXXXX,  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,  XXXXXXX,  XXXXXXX,  KC_MSTP,          KC_MNXT,
         XXXXXXX, XXXXXXX,  XXXXXXX,  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,  XXXXXXX,            KC_MNXT,          KC_MPLY,
         XXXXXXX,           XXXXXXX,  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,  XXXXXXX,            KC_MPLY, _______,
         XXXXXXX, XXXXXXX,  XXXXXXX,                             XXXXXXX,                            XXXXXXX,  _______,  _______,  _______, _______, _______),
@@ -55,8 +64,12 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         XXXXXXX,           XXXXXXX,  XXXXXXX, XXXXXXX, XXXXXXX, KC_KP_1, KC_KP_2, KC_KP_3, KC_PDOT, KC_PSLS,  XXXXXXX,            XXXXXXX, _______,
         _______, _______,  _______,                             KC_KP_0,                            _______,  XXXXXXX,  _______,  _______, _______, _______),
 
-// CapsLock and RGUI rationale: it could be Canc, but it's too dangerous
 };
+
+// TODO
+// Shortcut in MOV layer per ctrl alt f1 f2 f7
+// tasto media tap dance: tap = media per il prossimo keypress, doppio tap = del, hold = media
+// shift tap dance: frecce (single: right, double, down) ...sarebbe fico: tap+hold = mov
 
 // Encoder
 #if defined(ENCODER_MAP_ENABLE)
@@ -64,6 +77,7 @@ const uint16_t PROGMEM encoder_map[][NUM_ENCODERS][NUM_DIRECTIONS] = {
     [LBASE]   = {ENCODER_CCW_CW(MS_WHLU, MS_WHLD)},
     [LWBASE]   = {ENCODER_CCW_CW(KC_VOLD, KC_VOLU)},
     [LMOV]  = {ENCODER_CCW_CW(_______, _______)},
+    [LNUM]  = {ENCODER_CCW_CW(_______, _______)},
     [LMEDIA]  = {ENCODER_CCW_CW(KC_VOLD, KC_VOLU) },
     [LKPAD] = {ENCODER_CCW_CW(_______, _______)}
 };
@@ -122,13 +136,14 @@ bool rgb_matrix_indicators_kb(void) {
             rgb_matrix_set_color(23, RGB_BLUE);    // i (PgDown)
             rgb_matrix_set_color(24, RGB_BLUE);    // o (End)
             rgb_matrix_set_color(25, RGB_PURPLE);  // p (Print)
-            rgb_matrix_set_color(27, RGB_PINK);    // ] (Ins)
+            rgb_matrix_set_color(27, RGB_CORAL);   // ] (Ins)
             rgb_matrix_set_color(28, RGB_ORANGE);  // Backslash (LKPAD)
             rgb_matrix_set_color(36, RGB_SPRINGGREEN);    // h
             rgb_matrix_set_color(37, RGB_SPRINGGREEN);    // j
             rgb_matrix_set_color(38, RGB_SPRINGGREEN);    // k
             rgb_matrix_set_color(39, RGB_SPRINGGREEN);    // l
             rgb_matrix_set_color(15, RGB_SPRINGGREEN);    // Tab
+            rgb_matrix_set_color(16, RGB_SPRINGGREEN);    // q
             rgb_matrix_set_color(17, RGB_SPRINGGREEN);    // w
             rgb_matrix_set_color(18, RGB_SPRINGGREEN);    // e
             rgb_matrix_set_color(19, RGB_SPRINGGREEN);    // r
@@ -136,10 +151,23 @@ bool rgb_matrix_indicators_kb(void) {
             rgb_matrix_set_color(32, RGB_SPRINGGREEN);    // s
             rgb_matrix_set_color(33, RGB_SPRINGGREEN);    // d
             rgb_matrix_set_color(34, RGB_SPRINGGREEN);    // f
-            rgb_matrix_set_color(44, RGB_SPRINGGREEN);    // LeftShift
             rgb_matrix_set_color(60, RGB_BLUE);    // Space (Enter)
             rgb_matrix_set_color(0, RGB_GREEN);    // ` (Back to Base)
             rgb_matrix_set_color(42, RGB_GREEN);   // Enter (Back to Base)
+            break;
+        case LNUM:
+            rgb_matrix_set_color(31, RGB_SPRINGGREEN);    // a
+            rgb_matrix_set_color(32, RGB_SPRINGGREEN);    // s
+            rgb_matrix_set_color(33, RGB_SPRINGGREEN);    // d
+            rgb_matrix_set_color(34, RGB_SPRINGGREEN);    // f
+            rgb_matrix_set_color(35, RGB_SPRINGGREEN);    // g
+            rgb_matrix_set_color(36, RGB_SPRINGGREEN);    // h
+            rgb_matrix_set_color(37, RGB_SPRINGGREEN);    // j
+            rgb_matrix_set_color(38, RGB_SPRINGGREEN);    // k
+            rgb_matrix_set_color(39, RGB_SPRINGGREEN);    // l
+            rgb_matrix_set_color(40, RGB_SPRINGGREEN);    // ;
+            rgb_matrix_set_color(41, RGB_SPRINGGREEN);    // '
+            rgb_matrix_set_color(60, RGB_SPRINGGREEN);    // Space
             break;
         case LMEDIA:
             rgb_matrix_set_color(0, RGB_RED);      // ` (NK)
@@ -147,6 +175,8 @@ bool rgb_matrix_indicators_kb(void) {
             rgb_matrix_set_color(8, RGB_CORAL);    // 8
             rgb_matrix_set_color(9, RGB_CORAL);    // 9
             rgb_matrix_set_color(10, RGB_CORAL);   // 0
+            rgb_matrix_set_color(2, RGB_PURPLE);   // 2
+            rgb_matrix_set_color(16, RGB_PURPLE);   // q
             rgb_matrix_set_color(13, RGB_PURPLE);  // Backspace
             rgb_matrix_set_color(28, RGB_PURPLE);  // Backslash
             rgb_matrix_set_color(42, RGB_PURPLE);  // Enter

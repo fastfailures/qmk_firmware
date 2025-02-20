@@ -1,6 +1,6 @@
 // Mouse Key
-// https://github.com/qmk/qmk_firmware/blob/master/docs/feature_mouse_keys.md#combined-mode
-#define MK_COMBINED
+// https://docs.qmk.fm/features/mouse_keys#inertia-mode
+#define MOUSEKEY_INERTIA
 
 // Caps Word
 // https://github.com/qmk/qmk_firmware/blob/master/docs/features/caps_word.md
@@ -25,7 +25,7 @@
 #define RGB_MATRIX_DEFAULT_MODE RGB_MATRIX_SOLID_MULTISPLASH // Sets the default mode, if none has been set
 
 // Color selection: https://docs.qmk.fm/features/rgblight#usage (0 = red, 85 = green, 169 = blue)
-#define RGB_MATRIX_DEFAULT_HUE 97 // Sets the default hue value, if none has been set
+#define RGB_MATRIX_DEFAULT_HUE 95 // Sets the default hue value, if none has been set
 #define RGB_MATRIX_DEFAULT_SAT 175 // Sets the default saturation value, if none has been set
 //#define RGB_MATRIX_DEFAULT_VAL RGB_MATRIX_MAXIMUM_BRIGHTNESS // Sets the default brightness value, if none has been set
 //#define RGB_MATRIX_DEFAULT_SPD 127 // Sets the default animation speed, if none has been set
