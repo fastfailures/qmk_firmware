@@ -24,28 +24,24 @@ const uint16_t keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     // both Shifts: Caps Word
     // MOV 5 times: lock it
     // CapsLock and RGUI rationale: it could be Canc, but it's too dangerous
-
     [LMOV] = LAYOUT_60_ansi(
        TO(LBASE),KC_F1,    KC_F2,    KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,   KC_F11,   KC_F12,   KC_DEL,
         MS_BTN3, MS_BTN2,  MS_UP,    MS_BTN1, MS_WHLU, XXXXXXX, KC_HOME, KC_PGDN, KC_PGUP, KC_END,  KC_PSCR,  XXXXXXX,  KC_INS,   TO(LKPAD),
         _______, MS_LEFT,  MS_DOWN,  MS_RGHT, MS_WHLD, XXXXXXX, KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, XXXXXXX,  XXXXXXX,            TO(LBASE),
         _______,           XXXXXXX,  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,  XXXXXXX,            _______,
         _______, _______,  _______,                             KC_ENT,                             _______,  XXXXXXX,  _______,  MS_WHLU),
-
-    [LNUM] = LAYOUT_ansi_60(
+    [LNUM] = LAYOUT_60_ansi(
         XXXXXXX, XXXXXXX,  XXXXXXX,  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,  XXXXXXX,  XXXXXXX,  _______,
         _______, XXXXXXX,  XXXXXXX,  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,
         _______, KC_1,     KC_2,     KC_3,    KC_4,    KC_5,    KC_6,    KC_7,    KC_8,    KC_9,    KC_0,     KC_MINS,            _______,
         _______,           XXXXXXX,  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,  XXXXXXX,            _______,
         _______, _______,  _______,                             _______,                            _______,  XXXXXXX,  XXXXXXX,  _______),
-
     [LMEDIA] = LAYOUT_60_ansi(
         NK_TOGG,KC_AP2_BT1,KC_AP2_BT2,KC_AP2_BT3,KC_AP2_BT4,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,KC_AP_LED_TOG,XXXXXXX,KC_VOLD,KC_VOLU,KC_MUTE,
-        XXXXXXX, DM_REC1,  DM_PLY1,  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,  XXXXXXX,  XXXXXXX,  KC_MPRV,
+        XXXXXXX, XXXXXXX,  XXXXXXX,  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,  XXXXXXX,  XXXXXXX,  KC_MPRV,
         XXXXXXX, XXXXXXX,  XXXXXXX,  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,  XXXXXXX,            KC_MSTP,
         XXXXXXX,           XXXXXXX,  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,  XXXXXXX,            KC_MNXT,
         XXXXXXX, XXXXXXX,  XXXXXXX,                             XXXXXXX,                            XXXXXXX,  _______,  _______,  KC_MPLY),
-
     [LKPAD] = LAYOUT_60_ansi(
        TO(LBASE),XXXXXXX,  XXXXXXX,  XXXXXXX, XXXXXXX, KC_PERC, XXXXXXX, XXXXXXX, KC_PAST, XXXXXXX, XXXXXXX,  XXXXXXX,  KC_PEQL,  KC_BSPC,
         KC_TAB,  XXXXXXX,  KC_UP,    XXXXXXX, XXXXXXX, XXXXXXX, KC_KP_7, KC_KP_8, KC_KP_9, KC_PMNS, XXXXXXX,  XXXXXXX,  XXXXXXX,  KC_NUM_LOCK,
@@ -142,8 +138,6 @@ layer_state_t layer_state_set_user(layer_state_t state) {
             ap2_led_mask_set_key(0, 3, blue);    // 3
             ap2_led_mask_set_key(0, 4, blue);    // 4
             ap2_led_mask_set_key(0, 9, white);   // 9
-            ap2_led_mask_set_key(1, 1, magenta); // q
-            ap2_led_mask_set_key(1, 2, magenta); // w
             ap2_led_mask_set_key(0, 11, purple); // -
             ap2_led_mask_set_key(0, 12, purple); // =
             ap2_led_mask_set_key(0, 13, purple); // Backspace

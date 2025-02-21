@@ -14,4 +14,5 @@ KEY_OVERRIDE_ENABLE = yes
 
 # Dynamic macros
 # https://docs.qmk.fm/features/dynamic_macros
-DYNAMIC_MACRO_ENABLE = yes
+#DYNAMIC_MACRO_ENABLE = yes
+# this makes compilation fail!
