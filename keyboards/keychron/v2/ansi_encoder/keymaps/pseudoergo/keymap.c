@@ -113,18 +113,18 @@ bool rgb_matrix_indicators_kb(void) {
     // Layer colors
     switch(get_highest_layer(layer_state|default_layer_state)) {
         case LMOV:
-            rgb_matrix_set_color(1, RGB_TEAL);
-            rgb_matrix_set_color(2, RGB_TEAL);
-            rgb_matrix_set_color(3, RGB_TEAL);
-            rgb_matrix_set_color(4, RGB_TEAL);
-            rgb_matrix_set_color(5, RGB_TEAL);
-            rgb_matrix_set_color(6, RGB_TEAL);
-            rgb_matrix_set_color(7, RGB_TEAL);
-            rgb_matrix_set_color(8, RGB_TEAL);
-            rgb_matrix_set_color(9, RGB_TEAL);
-            rgb_matrix_set_color(10, RGB_TEAL);
-            rgb_matrix_set_color(11, RGB_TEAL);
-            rgb_matrix_set_color(12, RGB_TEAL);
+            rgb_matrix_set_color(1, RGB_TEAL);     // 1 (F1)
+            rgb_matrix_set_color(2, RGB_TEAL);     // 2 (F2)
+            rgb_matrix_set_color(3, RGB_TEAL);     // 3 (F3)
+            rgb_matrix_set_color(4, RGB_TEAL);     // 4 (F4)
+            rgb_matrix_set_color(5, RGB_TEAL);     // 5 (F5)
+            rgb_matrix_set_color(6, RGB_TEAL);     // 6 (F6)
+            rgb_matrix_set_color(7, RGB_TEAL);     // 7 (F7)
+            rgb_matrix_set_color(8, RGB_TEAL);     // 8 (F8)
+            rgb_matrix_set_color(9, RGB_TEAL);     // 9 (F9)
+            rgb_matrix_set_color(10, RGB_TEAL);    // 10 (F10)
+            rgb_matrix_set_color(11, RGB_TEAL);    // - (F11)
+            rgb_matrix_set_color(12, RGB_TEAL);    // = (F12)
             rgb_matrix_set_color(13, RGB_RED);     // Backspace (Del)
             rgb_matrix_set_color(21, RGB_BLUE);    // y (Home)
             rgb_matrix_set_color(22, RGB_BLUE);    // u (PgUp)
@@ -132,7 +132,7 @@ bool rgb_matrix_indicators_kb(void) {
             rgb_matrix_set_color(24, RGB_BLUE);    // o (End)
             rgb_matrix_set_color(25, RGB_PURPLE);  // p (Print)
             rgb_matrix_set_color(27, RGB_CORAL);   // ] (Ins)
-            rgb_matrix_set_color(28, RGB_ORANGE);  // Backslash (LKPAD)
+            rgb_matrix_set_color(28, RGB_ORANGE);  // \ (LKPAD)
             rgb_matrix_set_color(36, RGB_SPRINGGREEN);    // h
             rgb_matrix_set_color(37, RGB_SPRINGGREEN);    // j
             rgb_matrix_set_color(38, RGB_SPRINGGREEN);    // k
@@ -172,14 +172,14 @@ bool rgb_matrix_indicators_kb(void) {
             rgb_matrix_set_color(10, RGB_CORAL);   // 0
             rgb_matrix_set_color(2, RGB_MAGENTA);  // 2
             rgb_matrix_set_color(16, RGB_MAGENTA); // q
-            rgb_matrix_set_color(28, RGB_PURPLE);  // Backslash
-            rgb_matrix_set_color(42, RGB_PURPLE);  // Enter
-            rgb_matrix_set_color(29, RGB_PURPLE);  // PgUp
-            rgb_matrix_set_color(43, RGB_PURPLE);  // PgDn
+            rgb_matrix_set_color(28, RGB_PURPLE);  // \ (prev)
+            rgb_matrix_set_color(42, RGB_PURPLE);  // Enter (stop)
+            rgb_matrix_set_color(29, RGB_PURPLE);  // PgUp (next)
+            rgb_matrix_set_color(43, RGB_PURPLE);  // PgDn (play)
             break;
         case LKPAD:
             rgb_matrix_set_color_all(RGB_ORANGE);
-            rgb_matrix_set_color(28, RGB_RED);    // Backslash (NumLock)
+            rgb_matrix_set_color(28, RGB_RED);    // \ (NumLock)
             rgb_matrix_set_color(0, RGB_GREEN);   // ` (Back to Base)
             // TODO: color differently stuff, show NumLock status
             break;
