@@ -44,11 +44,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         _______, _______,  _______,                             KC_ENT,                             _______,  XXXXXXX,  _______,  _______, _______, _______),
 
     [LNUM] = LAYOUT_ansi_67(
-        XXXXXXX, XXXXXXX,  XXXXXXX,  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,  XXXXXXX,  XXXXXXX,  _______,          _______,
-        _______, XXXXXXX,  XXXXXXX,  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,          _______,
-        _______, KC_1,     KC_2,     KC_3,    KC_4,    KC_5,    KC_6,    KC_7,    KC_8,    KC_9,    KC_0,     KC_MINS,            _______,          _______,
-        _______,           XXXXXXX,  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,  XXXXXXX,            _______, _______,
-        _______, _______,  _______,                             _______,                            _______,  XXXXXXX,  XXXXXXX,  _______, _______, _______),
+        _______, _______,  _______,  _______, _______, _______, _______, _______, _______, _______, _______,  _______,  _______,  _______,          _______,
+        _______, XXXXXXX,  XXXXXXX,  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,  _______,  _______,  _______,          _______,
+        _______, KC_1,     KC_2,     KC_3,    KC_4,    KC_5,    KC_6,    KC_7,    KC_8,    KC_9,    KC_0,     KC_DOT,            _______,          _______,
+        _______,           XXXXXXX,  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, _______, _______,  _______,            _______, _______,
+        _______, _______,  _______,                             _______,                            _______,  _______,  _______,  _______, _______, _______),
 
     [LMEDIA] = LAYOUT_ansi_67(
         NK_TOGG, XXXXXXX,  DM_PLY1,  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, RM_HUED, RM_HUEU, RM_ON,   RM_OFF,   XXXXXXX,  XXXXXXX,  XXXXXXX,          KC_MUTE,
