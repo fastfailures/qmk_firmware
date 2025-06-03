@@ -46,8 +46,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [LNUM] = LAYOUT_ansi_67(
         _______, _______,  _______,  _______, _______, _______, _______, _______, _______, _______, _______,  _______,  _______,  _______,          _______,
         _______, XXXXXXX,  XXXXXXX,  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,  _______,  _______,  _______,          _______,
-        _______, KC_1,     KC_2,     KC_3,    KC_4,    KC_5,    KC_6,    KC_7,    KC_8,    KC_9,    KC_0,     KC_DOT,            _______,          _______,
-        _______,           XXXXXXX,  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, _______, _______,  _______,            _______, _______,
+        _______, KC_1,     KC_2,     KC_3,    KC_4,    KC_5,    KC_6,    KC_7,    KC_8,    KC_9,    KC_0,     KC_SCLN,            _______,          _______,
+        _______,           XXXXXXX,  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_SPC,  _______, _______,  _______,            _______, _______,
         _______, _______,  _______,                             _______,                            _______,  _______,  _______,  _______, _______, _______),
 
     [LMEDIA] = LAYOUT_ansi_67(
@@ -161,7 +161,8 @@ bool rgb_matrix_indicators_kb(void) {
             rgb_matrix_set_color(38, RGB_SPRINGGREEN);    // k
             rgb_matrix_set_color(39, RGB_SPRINGGREEN);    // l
             rgb_matrix_set_color(40, RGB_SPRINGGREEN);    // ;
-            rgb_matrix_set_color(41, RGB_SPRINGGREEN);    // '
+            rgb_matrix_set_color(41, RGB_TEAL);           // '
+            rgb_matrix_set_color(51, RGB_TEAL);           // m
             rgb_matrix_set_color(60, RGB_SPRINGGREEN);    // Space
             break;
         case LMEDIA:
