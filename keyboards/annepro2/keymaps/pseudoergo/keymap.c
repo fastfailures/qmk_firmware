@@ -26,10 +26,10 @@ const uint16_t keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     // CapsLock and RGUI rationale: it could be Canc, but it's too dangerous
     [LMOV] = LAYOUT_60_ansi(
        TO(LBASE),KC_F1,    KC_F2,    KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,   KC_F11,   KC_F12,   KC_DEL,
-        MS_BTN3, MS_BTN2,  MS_UP,    MS_BTN1, MS_WHLU, XXXXXXX, KC_HOME, KC_PGDN, KC_PGUP, KC_END,  KC_PSCR,  XXXXXXX,  KC_INS,   TO(LKPAD),
+        MS_BTN3, MS_BTN2,  MS_UP,    MS_BTN1, MS_WHLU, XXXXXXX, KC_HOME, KC_PGDN, KC_PGUP, KC_END,  KC_PSCR,  XXXXXXX,  XXXXXXX,  TO(LKPAD),
         _______, MS_LEFT,  MS_DOWN,  MS_RGHT, MS_WHLD, XXXXXXX, KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, XXXXXXX,  XXXXXXX,            TO(LBASE),
-        _______,           XXXXXXX,  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,  XXXXXXX,            _______,
-        _______, _______,  _______,                             KC_ENT,                             _______,  XXXXXXX,  _______,  MS_WHLU),
+        _______,           XXXXXXX,  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,  KC_INS,             _______,
+        _______, _______,  _______,                             KC_ENT,                             _______,  MS_ACL0,  _______,  MS_WHLU),
     [LNUM] = LAYOUT_60_ansi(
         _______, _______,  _______,  _______, _______, _______, _______, _______, _______, _______, _______,  _______,  _______,  _______,
         _______, XXXXXXX,  XXXXXXX,  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,  _______,  _______,  _______,
@@ -38,10 +38,10 @@ const uint16_t keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         _______, _______,  _______,                             _______,                            _______,  _______,  _______,  _______),
     [LMEDIA] = LAYOUT_60_ansi(
         XXXXXXX,KC_AP2_BT1,KC_AP2_BT2,KC_AP2_BT3,KC_AP2_BT4,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,KC_AP_LED_TOG,XXXXXXX,KC_VOLD,KC_VOLU,KC_MUTE,
-        XXXXXXX, XXXXXXX,  XXXXXXX,  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,  XXXXXXX,  XXXXXXX,  KC_MPRV,
-        XXXXXXX, XXXXXXX,  XXXXXXX,  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,  XXXXXXX,            KC_MSTP,
-        XXXXXXX,           XXXXXXX,  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,  XXXXXXX,            KC_MNXT,
-        XXXXXXX, XXXXXXX,  XXXXXXX,                             XXXXXXX,                            XXXXXXX,  _______,  _______,  KC_MPLY),
+        XXXXXXX, XXXXXXX,  XXXXXXX,  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,  XXXXXXX,  XXXXXXX,  KC_MNXT,
+        XXXXXXX, XXXXXXX,  XXXXXXX,  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,  XXXXXXX,            KC_MPLY,
+        XXXXXXX,           XXXXXXX,  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,  XXXXXXX,            XXXXXXX,
+        XXXXXXX, XXXXXXX,  XXXXXXX,                             XXXXXXX,                            XXXXXXX,  _______,  _______,  XXXXXXX),
     [LKPAD] = LAYOUT_60_ansi(
        TO(LBASE),XXXXXXX,  XXXXXXX,  XXXXXXX, XXXXXXX, KC_PERC, XXXXXXX, XXXXXXX, KC_PAST, XXXXXXX, XXXXXXX,  XXXXXXX,  KC_PEQL,  KC_BSPC,
         KC_TAB,  XXXXXXX,  KC_UP,    XXXXXXX, XXXXXXX, XXXXXXX, KC_KP_7, KC_KP_8, KC_KP_9, KC_PMNS, XXXXXXX,  XXXXXXX,  XXXXXXX,  KC_NUM_LOCK,
@@ -70,8 +70,8 @@ layer_state_t layer_state_set_user(layer_state_t state) {
     const ap2_led_t cyan = {.p.red = 0x20, .p.green = 0xff, .p.blue = 0x4c, .p.alpha = 0xff};
     // alt: (0x60, 0xff, 0x60); (0x00, 0xff, 0x66); (0x20, 0xff, 0x79);
     const ap2_led_t blue = {.p.red = 0x00, .p.green = 0x00, .p.blue = 0xff, .p.alpha = 0xff};
-    const ap2_led_t magenta = {.p.red = 0xff, .p.green = 0x00, .p.blue = 0xff, .p.alpha = 0xff};
-    const ap2_led_t pink = {.p.red = 0x99, .p.green = 0x00, .p.blue = 0x99, .p.alpha = 0xff};
+    // const ap2_led_t magenta = {.p.red = 0xff, .p.green = 0x00, .p.blue = 0xff, .p.alpha = 0xff};
+    // const ap2_led_t pink = {.p.red = 0x99, .p.green = 0x00, .p.blue = 0x99, .p.alpha = 0xff};
     const ap2_led_t purple = {.p.red = 0x30, .p.green = 0x21, .p.blue = 0xff, .p.alpha = 0xff};
     const ap2_led_t orange = {.p.red = 0xff, .p.green = 0xb6, .p.blue = 0x21, .p.alpha = 0xff};
     const ap2_led_t green = {.p.red = 0x00, .p.green = 0xff, .p.blue = 0x00, .p.alpha = 0xff};
@@ -99,8 +99,7 @@ layer_state_t layer_state_set_user(layer_state_t state) {
             ap2_led_mask_set_key(1, 7, blue);    // u (PgUp)
             ap2_led_mask_set_key(1, 8, blue);    // i (PgDown)
             ap2_led_mask_set_key(1, 9, blue);    // o (End)
-            ap2_led_mask_set_key(1, 10, magenta);  // p (Print)
-            ap2_led_mask_set_key(1, 12, pink);   // ] (Ins)
+            ap2_led_mask_set_key(1, 10, white);  // p (Print)
             ap2_led_mask_set_key(1, 13, orange); // \ (LKPAD)
             ap2_led_mask_set_key(1, 0, cyan);    // Tab
             ap2_led_mask_set_key(1, 1, cyan);    // q
@@ -115,6 +114,7 @@ layer_state_t layer_state_set_user(layer_state_t state) {
             ap2_led_mask_set_key(2, 7, cyan);    // j
             ap2_led_mask_set_key(2, 8, cyan);    // k
             ap2_led_mask_set_key(2, 9, cyan);    // l
+            ap2_led_mask_set_key(3, 11, white);   // ? (Ins)
             ap2_led_mask_set_key(4, 6, blue);    // Space (Enter)
             ap2_led_mask_set_key(4, 12, blue);   // CtrlDx (WhUp)
             break;
@@ -137,14 +137,12 @@ layer_state_t layer_state_set_user(layer_state_t state) {
             ap2_led_mask_set_key(0, 2, blue);    // 2
             ap2_led_mask_set_key(0, 3, blue);    // 3
             ap2_led_mask_set_key(0, 4, blue);    // 4
-            ap2_led_mask_set_key(0, 9, white);   // 9
-            ap2_led_mask_set_key(0, 11, purple); // -
-            ap2_led_mask_set_key(0, 12, purple); // =
-            ap2_led_mask_set_key(0, 13, purple); // Backspace
-            ap2_led_mask_set_key(1, 13, purple); // \ (prev)
-            ap2_led_mask_set_key(2, 12, purple); // Enter (stop)
-            ap2_led_mask_set_key(3, 12, purple); // RShift (next)
-            ap2_led_mask_set_key(4, 12, purple); // CtrlDx (play)
+            ap2_led_mask_set_key(0, 9, purple);   // 9
+            ap2_led_mask_set_key(0, 11, white); // -
+            ap2_led_mask_set_key(0, 12, white); // =
+            ap2_led_mask_set_key(0, 13, white); // Backspace (mute)
+            ap2_led_mask_set_key(1, 13, white); // \ (media next)
+            ap2_led_mask_set_key(2, 12, white); // Enter (media play)
             break;
         case LKPAD:
             ap2_led_mask_set_mono(orange);
