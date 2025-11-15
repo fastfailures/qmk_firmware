@@ -11,9 +11,8 @@ enum layers {
   // Second layer = switch in Win position
   LWBASE,   // Base layer (Win) - arrows on arrows
   //
-  LMOV,    // Movements layer
+  LMOV,    // Movements and media layer
   LNUM,    // Home-numbers layer
-  LMEDIA,  // Media layer
   LKPAD,   // Keypad layer
 };
 
@@ -24,7 +23,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_TAB,  KC_Q,     KC_W,     KC_E,    KC_R,    KC_T,    KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,     KC_LBRC,  KC_RBRC,  KC_BSLS,          MS_BTN2,
         KC_ESC,  KC_A,     KC_S,     KC_D,    KC_F,    KC_G,    KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN,  KC_QUOT,            KC_ENT,           MS_BTN1,
         KC_LSFT,           KC_Z,     KC_X,    KC_C,    KC_V,    KC_B,    KC_N,    KC_M,    KC_COMM, KC_DOT,   KC_SLSH,            KC_RSFT, MS_UP,
-        KC_LCTL, KC_LGUI,  KC_LALT,                             LT(LNUM,KC_SPC),                    KC_RALT, MO(LMEDIA),TT(LMOV), MS_LEFT, MS_DOWN, MS_RGHT),
+        KC_LCTL, KC_LGUI,  KC_LALT,                             LT(LNUM,KC_SPC),                    KC_RALT,  MS_ACL0,  TT(LMOV), MS_LEFT, MS_DOWN, MS_RGHT),
     // NOTE:
     // both Shifts: Caps Word
     // MOV 5 times: lock it
@@ -35,14 +34,14 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_TAB,  KC_Q,     KC_W,     KC_E,    KC_R,    KC_T,    KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,     KC_LBRC,  KC_RBRC,  KC_BSLS,          KC_MNXT,
         KC_ESC,  KC_A,     KC_S,     KC_D,    KC_F,    KC_G,    KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN,  KC_QUOT,            KC_ENT,           KC_MPLY,
         KC_LSFT,           KC_Z,     KC_X,    KC_C,    KC_V,    KC_B,    KC_N,    KC_M,    KC_COMM, KC_DOT,   KC_SLSH,            KC_RSFT, KC_UP,
-        KC_LCTL, KC_LGUI,  KC_LALT,                             LT(LNUM,KC_SPC),                    KC_RALT, MO(LMEDIA),TT(LMOV), KC_LEFT, KC_DOWN, KC_RGHT),
+        KC_LCTL, KC_LGUI,  KC_LALT,                             LT(LNUM,KC_SPC),                    KC_RALT,  MS_ACL0,  TT(LMOV), KC_LEFT, KC_DOWN, KC_RGHT),
 
     [LMOV] = LAYOUT_ansi_67(
-       TO(LBASE),KC_F1,    KC_F2,    KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,   KC_F11,   KC_F12,   KC_DEL,           _______,
-        MS_BTN3, MS_BTN2,  MS_UP,    MS_BTN1, MS_WHLU, XXXXXXX, KC_HOME, KC_PGDN, KC_PGUP, KC_END,  KC_PSCR,  XXXXXXX,  KC_INS,   TO(LKPAD),        _______,
-        _______, MS_LEFT,  MS_DOWN,  MS_RGHT, MS_WHLD, XXXXXXX, KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, XXXXXXX,  XXXXXXX,            TO(LBASE),        _______,
-        _______,           XXXXXXX,  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,  XXXXXXX,            _______, KC_UP,
-        _______, _______,  _______,                             KC_ENT,                             _______,  XXXXXXX,  _______,  KC_LEFT, KC_DOWN, KC_RGHT),
+       TO(LBASE),KC_F1,    KC_F2,    KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,   KC_F11,   KC_F12,   KC_DEL,           KC_MUTE,
+        MS_BTN3, MS_BTN2,  MS_UP,    MS_BTN1, MS_WHLU, XXXXXXX, KC_HOME, KC_PGDN, KC_PGUP, KC_END,  KC_PSCR,  RM_ON,    RM_OFF,   TO(LKPAD),        KC_MNXT,
+        _______, MS_LEFT,  MS_DOWN,  MS_RGHT, MS_WHLD, XXXXXXX, KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, XXXXXXX,  XXXXXXX,            TO(LBASE),        KC_MPLY,
+        _______,           XXXXXXX,  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, DM_REC1, DM_PLY1,  KC_INS,             _______, KC_UP,
+        _______, _______,  _______,                             KC_ENT,                             _______,  _______,  _______,  KC_LEFT, KC_DOWN, KC_RGHT),
 
     [LNUM] = LAYOUT_ansi_67(
         _______, _______,  _______,  _______, _______, _______, _______, _______, _______, _______, _______,  _______,  _______,  _______,          _______,
@@ -50,13 +49,6 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         _______, KC_1,     KC_2,     KC_3,    KC_4,    KC_5,    KC_6,    KC_7,    KC_8,    KC_9,    KC_0,     KC_SCLN,            _______,          _______,
         _______,           XXXXXXX,  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_SPC,  _______, _______,  _______,            _______, _______,
         _______, _______,  _______,                             _______,                            _______,  _______,  _______,  _______, _______, _______),
-
-    [LMEDIA] = LAYOUT_ansi_67(
-        XXXXXXX, XXXXXXX,  DM_PLY1,  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, RM_ON,   RM_OFF,   XXXXXXX,  XXXXXXX,  XXXXXXX,          KC_MUTE,
-        XXXXXXX, DM_REC1,  XXXXXXX,  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,  XXXXXXX,  XXXXXXX,  KC_MPRV,          KC_MNXT,
-        XXXXXXX, XXXXXXX,  XXXXXXX,  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,  XXXXXXX,            KC_MSTP,          KC_MPLY,
-        XXXXXXX,           XXXXXXX,  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,  XXXXXXX,            _______, _______,
-        XXXXXXX, XXXXXXX,  XXXXXXX,                             XXXXXXX,                            XXXXXXX,  _______,  _______,  _______, _______, _______),
 
     [LKPAD] = LAYOUT_ansi_67(
        TO(LBASE),XXXXXXX,  XXXXXXX,  XXXXXXX, XXXXXXX, KC_PERC, XXXXXXX, XXXXXXX, KC_PAST, XXXXXXX, XXXXXXX,  XXXXXXX,  KC_PEQL,  KC_BSPC,          _______,
@@ -72,9 +64,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 const uint16_t PROGMEM encoder_map[][NUM_ENCODERS][NUM_DIRECTIONS] = {
     [LBASE]   = {ENCODER_CCW_CW(MS_WHLU, MS_WHLD)},
     [LWBASE]   = {ENCODER_CCW_CW(KC_VOLD, KC_VOLU)},
-    [LMOV]  = {ENCODER_CCW_CW(_______, _______)},
+    [LMOV]  = {ENCODER_CCW_CW(KC_VOLD, KC_VOLU)},
     [LNUM]  = {ENCODER_CCW_CW(_______, _______)},
-    [LMEDIA]  = {ENCODER_CCW_CW(KC_VOLD, KC_VOLU) },
     [LKPAD] = {ENCODER_CCW_CW(_______, _______)}
 };
 #endif // ENCODER_MAP_ENABLE
@@ -131,8 +122,9 @@ bool rgb_matrix_indicators_kb(void) {
             rgb_matrix_set_color(22, RGB_BLUE);    // u (PgUp)
             rgb_matrix_set_color(23, RGB_BLUE);    // i (PgDown)
             rgb_matrix_set_color(24, RGB_BLUE);    // o (End)
-            rgb_matrix_set_color(25, RGB_PURPLE);  // p (Print)
-            rgb_matrix_set_color(27, RGB_CORAL);   // ] (Ins)
+            rgb_matrix_set_color(25, RGB_CORAL);   // p (Print)
+            rgb_matrix_set_color(26, RGB_PURPLE);  // [ (LED on)
+            rgb_matrix_set_color(27, RGB_PURPLE);  // ] (LED off)
             rgb_matrix_set_color(28, RGB_ORANGE);  // \ (LKPAD)
             rgb_matrix_set_color(36, RGB_SPRINGGREEN);    // h
             rgb_matrix_set_color(37, RGB_SPRINGGREEN);    // j
@@ -150,6 +142,16 @@ bool rgb_matrix_indicators_kb(void) {
             rgb_matrix_set_color(60, RGB_BLUE);    // Space (Enter)
             rgb_matrix_set_color(0, RGB_GREEN);    // ` (Back to Base)
             rgb_matrix_set_color(42, RGB_GREEN);   // Enter (Back to Base)
+            rgb_matrix_set_color(52, RGB_MAGENTA); // < (rec macro)
+            rgb_matrix_set_color(53, RGB_MAGENTA); // > (play macro)
+            rgb_matrix_set_color(54, RGB_CORAL);   // ? (Ins)
+            rgb_matrix_set_color(29, RGB_CORAL);   // PgUp (media next)
+            rgb_matrix_set_color(43, RGB_CORAL);   // PgDn (media play)
+            rgb_matrix_set_color(62, RGB_TEAL);    // Fn2 (mouse accel 0)
+            rgb_matrix_set_color(56, RGB_SPRINGGREEN);    // Up
+            rgb_matrix_set_color(64, RGB_SPRINGGREEN);    // Left
+            rgb_matrix_set_color(65, RGB_SPRINGGREEN);    // Down
+            rgb_matrix_set_color(66, RGB_SPRINGGREEN);    // Right
             break;
         case LNUM:
             rgb_matrix_set_color(31, RGB_SPRINGGREEN);    // a
@@ -166,16 +168,7 @@ bool rgb_matrix_indicators_kb(void) {
             rgb_matrix_set_color(51, RGB_TEAL);           // m
             rgb_matrix_set_color(60, RGB_SPRINGGREEN);    // Space
             break;
-        case LMEDIA:
-            rgb_matrix_set_color(9, RGB_CORAL);    // 9
-            rgb_matrix_set_color(10, RGB_CORAL);   // 0
-            rgb_matrix_set_color(2, RGB_MAGENTA);  // 2
-            rgb_matrix_set_color(16, RGB_MAGENTA); // q
-            rgb_matrix_set_color(28, RGB_PURPLE);  // \ (prev)
-            rgb_matrix_set_color(42, RGB_PURPLE);  // Enter (stop)
-            rgb_matrix_set_color(29, RGB_PURPLE);  // PgUp (next)
-            rgb_matrix_set_color(43, RGB_PURPLE);  // PgDn (play)
-            break;
+
         case LKPAD:
             rgb_matrix_set_color_all(RGB_ORANGE);
             rgb_matrix_set_color(28, RGB_RED);    // \ (NumLock)
