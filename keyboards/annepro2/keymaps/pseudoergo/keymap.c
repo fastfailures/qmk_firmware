@@ -37,7 +37,7 @@ const uint16_t keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         _______,           XXXXXXX,  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_SPC,  _______, _______,  _______,            _______,
         _______, _______,  _______,                             _______,                            _______,  _______,  _______,  _______),
     [LMEDIA] = LAYOUT_60_ansi(
-        NK_TOGG,KC_AP2_BT1,KC_AP2_BT2,KC_AP2_BT3,KC_AP2_BT4,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,KC_AP_LED_TOG,XXXXXXX,KC_VOLD,KC_VOLU,KC_MUTE,
+        XXXXXXX,KC_AP2_BT1,KC_AP2_BT2,KC_AP2_BT3,KC_AP2_BT4,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,KC_AP_LED_TOG,XXXXXXX,KC_VOLD,KC_VOLU,KC_MUTE,
         XXXXXXX, XXXXXXX,  XXXXXXX,  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,  XXXXXXX,  XXXXXXX,  KC_MPRV,
         XXXXXXX, XXXXXXX,  XXXXXXX,  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,  XXXXXXX,            KC_MSTP,
         XXXXXXX,           XXXXXXX,  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,  XXXXXXX,            KC_MNXT,
@@ -133,7 +133,6 @@ layer_state_t layer_state_set_user(layer_state_t state) {
             ap2_led_mask_set_key(3, 8, white);   // m
             break;
         case LMEDIA:
-            ap2_led_mask_set_key(0, 0, red);     // `
             ap2_led_mask_set_key(0, 1, blue);    // 1
             ap2_led_mask_set_key(0, 2, blue);    // 2
             ap2_led_mask_set_key(0, 3, blue);    // 3
