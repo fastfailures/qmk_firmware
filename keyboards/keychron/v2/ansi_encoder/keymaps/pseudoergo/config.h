@@ -1,6 +1,7 @@
 // Mouse Key
 // https://docs.qmk.fm/features/mouse_keys#inertia-mode
-#define MOUSEKEY_INERTIA
+// #define MK_COMBINED
+// #define MK_KINETIC_SPEED
 
 // Caps Word
 // https://github.com/qmk/qmk_firmware/blob/master/docs/features/caps_word.md

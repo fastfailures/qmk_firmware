@@ -2,6 +2,7 @@
 // https://docs.qmk.fm/
 // https://github.com/qmk/qmk_firmware/blob/master/docs/keycodes.md
 
+#include "inttypes.h"
 #include QMK_KEYBOARD_H
 
 enum layers {
@@ -40,8 +41,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
        TO(LBASE),KC_F1,    KC_F2,    KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,   KC_F11,   KC_F12,   KC_DEL,           _______,
         MS_BTN3, MS_BTN2,  MS_UP,    MS_BTN1, MS_WHLU, XXXXXXX, KC_HOME, KC_PGDN, KC_PGUP, KC_END,  KC_PSCR,  XXXXXXX,  KC_INS,   TO(LKPAD),        _______,
         _______, MS_LEFT,  MS_DOWN,  MS_RGHT, MS_WHLD, XXXXXXX, KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, XXXXXXX,  XXXXXXX,            TO(LBASE),        _______,
-        _______,           XXXXXXX,  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,  XXXXXXX,            _______, _______,
-        _______, _______,  _______,                             KC_ENT,                             _______,  XXXXXXX,  _______,  _______, _______, _______),
+        _______,           XXXXXXX,  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,  XXXXXXX,            _______, KC_UP,
+        _______, _______,  _______,                             KC_ENT,                             _______,  XXXXXXX,  _______,  KC_LEFT, KC_DOWN, KC_RGHT),
 
     [LNUM] = LAYOUT_ansi_67(
         _______, _______,  _______,  _______, _______, _______, _______, _______, _______, _______, _______,  _______,  _______,  _______,          _______,
@@ -51,7 +52,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         _______, _______,  _______,                             _______,                            _______,  _______,  _______,  _______, _______, _______),
 
     [LMEDIA] = LAYOUT_ansi_67(
-        NK_TOGG, XXXXXXX,  DM_PLY1,  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, RM_HUED, RM_HUEU, RM_ON,   RM_OFF,   XXXXXXX,  XXXXXXX,  XXXXXXX,          KC_MUTE,
+        XXXXXXX, XXXXXXX,  DM_PLY1,  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, RM_ON,   RM_OFF,   XXXXXXX,  XXXXXXX,  XXXXXXX,          KC_MUTE,
         XXXXXXX, DM_REC1,  XXXXXXX,  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,  XXXXXXX,  XXXXXXX,  KC_MPRV,          KC_MNXT,
         XXXXXXX, XXXXXXX,  XXXXXXX,  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,  XXXXXXX,            KC_MSTP,          KC_MPLY,
         XXXXXXX,           XXXXXXX,  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,  XXXXXXX,            _______, _______,
@@ -166,9 +167,6 @@ bool rgb_matrix_indicators_kb(void) {
             rgb_matrix_set_color(60, RGB_SPRINGGREEN);    // Space
             break;
         case LMEDIA:
-            rgb_matrix_set_color(0, RGB_RED);      // ` (NK)
-            rgb_matrix_set_color(7, RGB_CORAL);    // 7
-            rgb_matrix_set_color(8, RGB_CORAL);    // 8
             rgb_matrix_set_color(9, RGB_CORAL);    // 9
             rgb_matrix_set_color(10, RGB_CORAL);   // 0
             rgb_matrix_set_color(2, RGB_MAGENTA);  // 2
